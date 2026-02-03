@@ -12,7 +12,7 @@ export default function PortalLoginPage() {
     const router = useRouter()
 
     // Get unique authors
-    const authors = Array.from(new Set(inventory.map(i => i.author))).filter(a => a !== 'N/A')
+    const authors = Array.from(new Set(inventory.map(i => i.authorName))).filter(a => a !== 'N/A')
     const [selectedAuthor, setSelectedAuthor] = useState<string>("")
 
     const handleLogin = () => {

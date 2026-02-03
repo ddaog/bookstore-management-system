@@ -12,7 +12,7 @@ export default function AuthorDashboardPage() {
     const { inventory, sales } = useStore()
 
     // Filter data for this author
-    const authorItems = inventory.filter(i => i.author === authorName)
+    const authorItems = inventory.filter(i => i.authorName === authorName)
     const itemIds = authorItems.map(i => i.id)
     const authorSales = sales.filter(s => itemIds.includes(s.itemId))
 
