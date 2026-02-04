@@ -40,6 +40,7 @@ const formSchema = z.object({
     authorId: z.string().min(1, { message: "작가를 선택해주세요." }),
     price: z.coerce.number().min(0, { message: "가격은 0원 이상이어야 합니다." }),
     stock: z.coerce.number().min(0, { message: "재고는 0개 이상이어야 합니다." }),
+    supplyRate: z.coerce.number().min(0).max(100, { message: "0~100 사이 값이어야 합니다." }),
     type: z.enum(["Independent", "General", "Goods"] as const),
     method: z.enum(["Purchase", "Consignment"] as const),
 })
@@ -55,6 +56,7 @@ export function AddItemDialog() {
             authorId: "",
             price: 0,
             stock: 0,
+            supplyRate: 70,
             type: "Independent",
             method: "Consignment",
         },
@@ -160,10 +162,27 @@ export function AddItemDialog() {
                                             />
                                         </FormControl>
                                         <FormMessage />
-                                    </FormItem>
-                                )}
                             />
                         </div>
+                        
+                        <FormField
+                            control={form.control}
+                            name="supplyRate"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>공급률 (%)</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            type="number"
+                                            placeholder="70"
+                                            {...field}
+                                            onChange={(e) => field.onChange(+e.target.value)}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
                         <div className="grid grid-cols-2 gap-4">
                             <FormField

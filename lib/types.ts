@@ -22,6 +22,7 @@ export interface Item {
   method: AcqMethod;
   isbn?: string;
   entryDate: string;
+  supplyRate?: number; // Integer percentage, e.g. 70 for 70%
 }
 
 export interface Sale {

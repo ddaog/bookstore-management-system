@@ -65,6 +65,14 @@ export const columns: ColumnDef<Item>[] = [
         }
     },
     {
+        accessorKey: "supplyRate",
+        header: "공급률",
+        cell: ({ row }) => {
+            const rate = row.getValue("supplyRate") as number;
+            return <div className="text-center">{rate ? `${rate}%` : "-"}</div>;
+        },
+    },
+    {
         accessorKey: "price",
         header: "가격",
         cell: ({ row }) => {
