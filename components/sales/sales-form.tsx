@@ -58,13 +58,15 @@ export function SalesForm() {
 
         const sale = {
             id: Math.random().toString(36).substr(2, 9),
+            transactionId: Math.random().toString(36).substr(2, 9), // Single item transaction for now
             itemId: data.itemId,
             quantity: data.quantity,
+            pricePerItem: item.price,
             totalPrice: item.price * data.quantity,
             date: new Date().toISOString()
         }
 
-        addSale(sale)
+        addSale([sale])
         form.reset({
             itemId: "",
             quantity: 1
