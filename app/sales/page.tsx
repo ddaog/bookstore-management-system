@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Search, Plus, Minus, Trash2, CreditCard } from "lucide-react"
+import { Search, Plus, Minus, Trash2, CreditCard, History } from "lucide-react"
+import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Item, Sale } from "@/lib/types"
 
@@ -113,8 +114,14 @@ export default function POSPage() {
             {/* Right: Cart */}
             <div className="w-[400px] flex flex-col gap-4">
                 <Card className="flex-1 flex flex-col">
-                    <CardHeader>
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle>장바구니 (Cart)</CardTitle>
+                        <Button variant="ghost" size="icon" asChild>
+                            <Link href="/sales/history">
+                                <History className="h-4 w-4" />
+                                <span className="sr-only">History</span>
+                            </Link>
+                        </Button>
                     </CardHeader>
                     <Separator />
                     <CardContent className="flex-1 p-0">
