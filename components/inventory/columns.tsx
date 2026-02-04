@@ -64,40 +64,33 @@ export const columns: ColumnDef<Item>[] = [
             );
         }
     },
-    {
-        accessorKey: "supplyRate",
-        header: "공급률",
-        cell: ({ row }) => {
-            const rate = row.getValue("supplyRate") as number;
-            return <div className="text-center">{rate ? `${rate}%` : "-"}</div>;
-        },
     },
-    {
-        accessorKey: "price",
+{
+    accessorKey: "price",
         header: "가격",
-        cell: ({ row }) => {
-            const amount = parseFloat(row.getValue("price"));
-            const formatted = new Intl.NumberFormat("ko-KR", {
-                style: "currency",
-                currency: "KRW",
-            }).format(amount);
-            return <div className="font-medium">{formatted}</div>;
-        },
+            cell: ({ row }) => {
+                const amount = parseFloat(row.getValue("price"));
+                const formatted = new Intl.NumberFormat("ko-KR", {
+                    style: "currency",
+                    currency: "KRW",
+                }).format(amount);
+                return <div className="font-medium">{formatted}</div>;
+            },
     },
-    {
-        accessorKey: "stock",
+{
+    accessorKey: "stock",
         header: "재고",
-        cell: ({ row }) => {
-            const stock = parseFloat(row.getValue("stock"));
-            let colorClass = "text-green-600";
-            if (stock === 0) colorClass = "text-red-600 font-bold";
-            else if (stock < 5) colorClass = "text-orange-500 font-bold";
+            cell: ({ row }) => {
+                const stock = parseFloat(row.getValue("stock"));
+                let colorClass = "text-green-600";
+                if (stock === 0) colorClass = "text-red-600 font-bold";
+                else if (stock < 5) colorClass = "text-orange-500 font-bold";
 
-            return <div className={colorClass}>{stock} ea</div>;
-        },
+                return <div className={colorClass}>{stock} ea</div>;
+            },
     },
-    {
-        id: "actions",
+{
+    id: "actions",
         cell: ({ row }) => {
             const item = row.original;
             // eslint-disable-next-line

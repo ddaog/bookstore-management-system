@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, ShoppingCart, BookOpen, PenTool, Receipt, Menu, Users } from "lucide-react";
+import { LayoutDashboard, ShoppingCart, BookOpen, PenTool, Receipt, Menu, Users, Calculator } from "lucide-react";
 
 export function SideNav() {
     const pathname = usePathname();
@@ -45,6 +45,12 @@ export function SideNav() {
             label: "작가 관리",
             icon: Users,
             active: pathname === "/authors",
+        },
+        {
+            href: "/accounting",
+            label: "회계 / 정산 확인",
+            icon: Calculator,
+            active: pathname === "/accounting",
         },
     ];
 
