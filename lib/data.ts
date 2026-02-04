@@ -1,123 +1,81 @@
 import { Item, Sale, EntryRequest, Settlement, Author } from './types';
 
-// Dummy Data
+// Real Data Imported from Google Sheet (2025.2.4)
 export const initialAuthors: Author[] = [
-    {
-        id: "auth-001",
-        name: "김민",
-        email: "kim@example.com",
-        phoneNumber: "010-1234-5678",
-        bankAccount: "카카오뱅크 3333-01-2345678",
-        description: "일상의 소소함을 그리는 작가"
-    },
-    {
-        id: "auth-002",
-        name: "박문",
-        email: "park@example.com",
-        phoneNumber: "010-9876-5432",
-        bankAccount: "국민은행 123-456-789012",
-        description: "SF 소설가"
-    },
-    {
-        id: "auth-general",
-        name: "일반도서", // System placeholder for general books
-        email: "",
-        phoneNumber: "",
-        bankAccount: "",
-    }
+    { id: "auth-1", name: "샌드위치 프레스", description: "주혜린", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-2", name: "남섬", description: "남섬", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-3", name: "김져니", description: "김져니", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-4", name: "321books", description: "미자 리", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-5", name: "산만한북스", description: "연두", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-6", name: "민개미", description: "민개미", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-7", name: "김보배", description: "김보배", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-8", name: "이스트엔드", description: "주얼", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-9", name: "참깨", description: "참깨", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-10", name: "엠디랩프레스", description: "엠디랩프레스", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-11", name: "퍼즈프로젝트", description: "퍼즈프로젝트", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-12", name: "김보미", description: "김보미", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-13", name: "whitegrub", description: "whitegrub", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-14", name: "조혜리", description: "조혜리", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-15", name: "잇선", description: "잇선", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-16", name: "김재현", description: "김재현", email: "", phoneNumber: "", bankAccount: "" },
+    { id: "auth-17", name: "머쓰앤매쓰", description: "머쓰앤매쓰", email: "", phoneNumber: "", bankAccount: "" },
 ];
 
 export const initialInventory: Item[] = [
-    {
-        id: "item-1",
-        title: "여름의 맛",
-        authorId: "auth-001",
-        authorName: "김민",
-        price: 15000,
-        stock: 5,
-        type: "Independent",
-        method: "Consignment",
-        entryDate: "2025-01-10",
-    },
-    {
-        id: "item-2",
-        title: "우주의 끝",
-        authorId: "auth-002",
-        authorName: "박문",
-        price: 18000,
-        stock: 3,
-        type: "Independent",
-        method: "Purchase",
-        entryDate: "2025-01-12",
-    },
-    {
-        id: "item-3",
-        title: "트렌드 코리아 2025",
-        authorId: "auth-general",
-        authorName: "김난도 외",
-        price: 22000,
-        stock: 10,
-        type: "General",
-        method: "Purchase",
-        entryDate: "2025-01-15",
-    },
-    {
-        id: "goods-1",
-        title: "공간과몰입 머그컵",
-        authorId: "auth-general",
-        authorName: "공간과몰입",
-        price: 12000,
-        stock: 20,
-        type: "Goods",
-        method: "Purchase",
-        entryDate: "2025-01-01",
-    },
-    ...Array.from({ length: 200 }).map((_, i) => ({
-        id: `mock-item-${i + 1}`,
-        title: `샘플 도서 ${i + 1} - ${["여름의", "우주의", "나의", "너의", "우리의"][i % 5]} ${["기록", "생각", "하루", "여행", "꿈"][i % 5]}`,
-        authorId: "auth-001",
-        authorName: ["김민", "박문", "이서윤", "최지훈"][i % 4],
-        price: [10000, 12000, 15000, 18000, 20000][i % 5],
-        stock: Math.floor(Math.random() * 20),
-        type: ["Independent", "General", "Goods"][Math.floor(Math.random() * 3)] as "Independent" | "General" | "Goods",
-        method: ["Consignment", "Purchase"][i % 2] as "Consignment" | "Purchase",
-        entryDate: "2025-01-01",
-    }))
+    { id: "item-1", title: "영화 속 샌드위치 도감", authorId: "auth-1", authorName: "샌드위치 프레스", price: 18000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-2", title: "대충 그린 이모티콘에 대하여", authorId: "auth-1", authorName: "샌드위치 프레스", price: 12000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-3", title: "유성매직", authorId: "auth-2", authorName: "남섬", price: 10000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-4", title: "나를 아끼는 마음 (위탁)", authorId: "auth-3", authorName: "김져니", price: 10000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-5", title: "나를 아끼는 60가지 방법들 (위탁)", authorId: "auth-3", authorName: "김져니", price: 13000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-6", title: "나를 아끼는 60가지 방법들 2쇄 (위탁)", authorId: "auth-3", authorName: "김져니", price: 15000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-7", title: "갑자기 어른 (위탁)", authorId: "auth-3", authorName: "김져니", price: 10000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-8", title: "14번가의 행복 (위탁)", authorId: "auth-3", authorName: "김져니", price: 10000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-9", title: "스물다섯 가지 크리스마스 (위탁)", authorId: "auth-3", authorName: "김져니", price: 10000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-10", title: "원주", authorId: "auth-4", authorName: "321books", price: 15000, stock: 4, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-11", title: "물류센터에서", authorId: "auth-4", authorName: "321books", price: 5000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-12", title: "아카데미에서 만난", authorId: "auth-4", authorName: "321books", price: 3500, stock: 2, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-13", title: "빛의 문턱에 서서 선생님께(신판)", authorId: "auth-5", authorName: "산만한북스", price: 12000, stock: 1, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-14", title: "빛의 문턱에 서서 선생님께(구판)", authorId: "auth-5", authorName: "산만한북스", price: 10000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-15", title: "맥주 한 캔의 이유", authorId: "auth-6", authorName: "민개미", price: 13000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-16", title: "고민이 몽가요", authorId: "auth-6", authorName: "민개미", price: 19000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-17", title: "나만혼자", authorId: "auth-7", authorName: "김보배", price: 12000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-18", title: "풍경빌라", authorId: "auth-7", authorName: "김보배", price: 12000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-19", title: "아주작은방", authorId: "auth-7", authorName: "김보배", price: 8000, stock: 2, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-20", title: "숨은 그림책", authorId: "auth-7", authorName: "김보배", price: 11000, stock: 3, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-21", title: "여름의 한가운데", authorId: "auth-8", authorName: "이스트엔드", price: 12000, stock: 1, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-22", title: "당신의 계절이 지나가면", authorId: "auth-8", authorName: "이스트엔드", price: 12000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-23", title: "제 7의 행성", authorId: "auth-9", authorName: "참깨", price: 13000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-24", title: "글리프 1 : 정세랑", authorId: "auth-10", authorName: "엠디랩프레스", price: 12000, stock: 2, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-25", title: "글리프 2 : 구병모", authorId: "auth-10", authorName: "엠디랩프레스", price: 12000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-26", title: "글리프 3 : 김금희", authorId: "auth-10", authorName: "엠디랩프레스", price: 12000, stock: 2, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-27", title: "글리프 4 : 강화길", authorId: "auth-10", authorName: "엠디랩프레스", price: 12000, stock: 1, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-28", title: "글리프 5 : 정유정", authorId: "auth-10", authorName: "엠디랩프레스", price: 12000, stock: 2, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-29", title: "베지컬러스 1", authorId: "auth-11", authorName: "퍼즈프로젝트", price: 10000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-30", title: "베지컬러스 2", authorId: "auth-11", authorName: "퍼즈프로젝트", price: 10000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-31", title: "베지컬러스 3", authorId: "auth-11", authorName: "퍼즈프로젝트", price: 10000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-32", title: "걷는 하루", authorId: "auth-12", authorName: "김보미", price: 15000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-33", title: "나와 승자 1", authorId: "auth-13", authorName: "whitegrub", price: 9000, stock: 1, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-34", title: "나와 승자 2", authorId: "auth-13", authorName: "whitegrub", price: 9000, stock: 1, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-35", title: "나와 승자 3", authorId: "auth-13", authorName: "whitegrub", price: 9000, stock: 1, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-36", title: "기자포기", authorId: "auth-14", authorName: "조혜리", price: 13000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-37", title: "모지리묶음 1", authorId: "auth-15", authorName: "잇선", price: 10000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-38", title: "모지리묶음 2", authorId: "auth-15", authorName: "잇선", price: 10000, stock: 4, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-39", title: "모지리묶음 3", authorId: "auth-15", authorName: "잇선", price: 10000, stock: 4, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-40", title: "모지리묶음 4", authorId: "auth-15", authorName: "잇선", price: 10000, stock: 4, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-41", title: "이상한 다이어리 1", authorId: "auth-15", authorName: "잇선", price: 15000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-42", title: "이상한 다이어리 2", authorId: "auth-15", authorName: "잇선", price: 15000, stock: 5, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-43", title: "이상징후 1", authorId: "auth-15", authorName: "잇선", price: 15000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-44", title: "웅크린 양의 고향", authorId: "auth-16", authorName: "김재현", price: 15000, stock: 4, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-45", title: "오늘 나에게 다섯 통의 편지가 왔다", authorId: "auth-17", authorName: "머쓰앤매쓰", price: 12000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-46", title: "누가 가장 억울하게 죽었을까", authorId: "auth-17", authorName: "머쓰앤매쓰", price: 12000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-47", title: "누가 가장 사랑받지 못했을까", authorId: "auth-17", authorName: "머쓰앤매쓰", price: 12000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-48", title: "그래서 그림을 그렸어_일본", authorId: "auth-17", authorName: "머쓰앤매쓰", price: 13000, stock: 1, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-49", title: "그래서 그림을 그렸어_중국", authorId: "auth-17", authorName: "머쓰앤매쓰", price: 13000, stock: 4, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
+    { id: "item-50", title: "그래서 그림을 그렸어_스페인", authorId: "auth-17", authorName: "머쓰앤매쓰", price: 13000, stock: 0, type: "Independent", method: "Consignment", entryDate: "2025-02-04" },
 ];
 
-export const initialSales: Sale[] = [
-    {
-        id: "sale-1",
-        transactionId: "tx-1",
-        itemId: "item-1",
-        quantity: 1,
-        pricePerItem: 15000,
-        totalPrice: 15000,
-        date: new Date().toISOString(),
-    },
-];
+export const initialSales: Sale[] = [];
 
-export const initialRequests: EntryRequest[] = [
-    {
-        id: "req-1",
-        authorName: "이서윤",
-        email: "lee@example.com",
-        bookTitle: "새벽의 단상",
-        description: "새벽에 쓴 시들을 모은 시집입니다.",
-        status: "Pending",
-        requestDate: "2025-02-01",
-    }
-];
+export const initialRequests: EntryRequest[] = [];
 
-export const initialSettlements: Settlement[] = [
-    {
-        id: "set-1",
-        authorId: "auth-001",
-        authorName: "김민",
-        quarter: "2025-Q1",
-        totalSales: 150000,
-        commission: 45000,
-        payoutAmount: 105000,
-        status: "Pending",
-    }
-];
+export const initialSettlements: Settlement[] = [];
