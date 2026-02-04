@@ -11,6 +11,16 @@ import { Search, Plus, Minus, Trash2, CreditCard, History } from "lucide-react"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Item, Sale } from "@/lib/types"
+import { format } from "date-fns"
+import { ko } from "date-fns/locale"
+import { Calendar as CalendarIcon } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Calendar } from "@/components/ui/calendar"
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
 
 interface CartItem extends Item {
     quantity: number
@@ -20,6 +30,7 @@ export default function POSPage() {
     const { inventory, addSale } = useStore()
     const [searchQuery, setSearchQuery] = useState("")
     const [cart, setCart] = useState<CartItem[]>([])
+    const [date, setDate] = useState<Date | undefined>(new Date())
 
     const filteredItems = inventory.filter(item =>
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -63,7 +74,7 @@ export default function POSPage() {
             quantity: item.quantity,
             pricePerItem: item.price,
             totalPrice: item.price * item.quantity,
-            date: new Date().toISOString()
+            date: date ? date.toISOString() : new Date().toISOString()
         }))
 
         addSale(newSales)
@@ -158,6 +169,31 @@ export default function POSPage() {
                     </CardContent>
                     <Separator />
                     <div className="p-4 space-y-4">
+                        <div className="flex flex-col space-y-2">
+                            <label className="text-sm font-medium">판매 일자</label>
+                            <Popover>
+                                <PopoverTrigger asChild>
+                                    <Button
+                                        variant={"outline"}
+                                        className={cn(
+                                            "w-full justify-start text-left font-normal",
+                                            !date && "text-muted-foreground"
+                                        )}
+                                    >
+                                        <CalendarIcon className="mr-2 h-4 w-4" />
+                                        {date ? format(date, "PPP", { locale: ko }) : <span>날짜 선택</span>}
+                                    </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0">
+                                    <Calendar
+                                        mode="single"
+                                        selected={date}
+                                        onSelect={setDate}
+                                        initialFocus
+                                    />
+                                </PopoverContent>
+                            </Popover>
+                        </div>
                         <div className="flex justify-between items-center text-lg font-bold">
                             <span>총 결제금액</span>
                             <span>{totalAmount.toLocaleString()}원</span>

@@ -162,9 +162,11 @@ export function AddItemDialog() {
                                             />
                                         </FormControl>
                                         <FormMessage />
+                                    </FormItem>
+                                )}
                             />
                         </div>
-                        
+
                         <FormField
                             control={form.control}
                             name="supplyRate"
