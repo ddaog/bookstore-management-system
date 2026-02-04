@@ -72,6 +72,17 @@ export const initialInventory: Item[] = [
         method: "Purchase",
         entryDate: "2025-01-01",
     },
+    ...Array.from({ length: 200 }).map((_, i) => ({
+        id: `mock-item-${i + 1}`,
+        title: `샘플 도서 ${i + 1} - ${["여름의", "우주의", "나의", "너의", "우리의"][i % 5]} ${["기록", "생각", "하루", "여행", "꿈"][i % 5]}`,
+        authorId: "auth-001",
+        authorName: ["김민", "박문", "이서윤", "최지훈"][i % 4],
+        price: [10000, 12000, 15000, 18000, 20000][i % 5],
+        stock: Math.floor(Math.random() * 20),
+        type: ["Independent", "General", "Goods"][Math.floor(Math.random() * 3)] as "Independent" | "General" | "Goods",
+        method: ["Consignment", "Purchase"][i % 2] as "Consignment" | "Purchase",
+        entryDate: "2025-01-01",
+    }))
 ];
 
 export const initialSales: Sale[] = [
