@@ -40,7 +40,12 @@ export const columns: ColumnDef<Item>[] = [
         header: "구분",
         cell: ({ row }) => {
             const type = row.getValue("type") as string;
-            return <Badge variant="outline">{type}</Badge>;
+            const typeMap: Record<string, string> = {
+                Independent: "독립서적",
+                General: "일반서적",
+                Goods: "소품",
+            };
+            return <Badge variant="outline">{typeMap[type] || type}</Badge>;
         },
     },
     {
@@ -48,9 +53,13 @@ export const columns: ColumnDef<Item>[] = [
         header: "입고 방식",
         cell: ({ row }) => {
             const method = row.getValue("method") as string;
+            const methodMap: Record<string, string> = {
+                Purchase: "매입",
+                Consignment: "위탁",
+            };
             return (
                 <Badge variant={method === 'Consignment' ? "secondary" : "default"}>
-                    {method}
+                    {methodMap[method] || method}
                 </Badge>
             );
         }
