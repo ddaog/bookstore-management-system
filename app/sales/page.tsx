@@ -72,7 +72,7 @@ export default function POSPage() {
     }
 
     return (
-        <div className="flex h-[calc(100vh-2rem)] gap-4">
+        <div className="flex flex-col lg:flex-row h-auto lg:h-[calc(100vh-2rem)] gap-4">
             {/* Left: Product Catalog */}
             <div className="flex-1 flex flex-col gap-4">
                 <div className="flex items-center gap-2">
@@ -87,7 +87,7 @@ export default function POSPage() {
                     </div>
                 </div>
 
-                <ScrollArea className="flex-1 rounded-md border p-4">
+                <ScrollArea className="h-[50vh] lg:h-auto lg:flex-1 rounded-md border p-4">
                     <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                         {filteredItems.map(item => (
                             <Card
@@ -112,7 +112,7 @@ export default function POSPage() {
             </div>
 
             {/* Right: Cart */}
-            <div className="w-[400px] flex flex-col gap-4">
+            <div className="w-full lg:w-[400px] flex flex-col gap-4">
                 <Card className="flex-1 flex flex-col">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle>장바구니 (Cart)</CardTitle>
@@ -125,7 +125,7 @@ export default function POSPage() {
                     </CardHeader>
                     <Separator />
                     <CardContent className="flex-1 p-0">
-                        <ScrollArea className="h-[calc(100vh-14rem)] p-4">
+                        <ScrollArea className="h-[40vh] lg:h-[calc(100vh-14rem)] p-4">
                             <div className="flex flex-col gap-4">
                                 {cart.length === 0 ? (
                                     <div className="text-center text-muted-foreground py-8">

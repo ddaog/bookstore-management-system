@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SideNav } from "@/components/side-nav";
+import { MobileNav } from "@/components/mobile-nav";
 import { cn } from "@/lib/utils";
 import { StoreProvider } from "@/components/store-provider";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             </div>
             <div className="flex flex-col">
               <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-white dark:bg-neutral-950 px-6">
+                <MobileNav />
                 <div className="w-full flex-1">
                   {/* Header content like search or user profile can go here */}
                   <span className="font-semibold text-lg text-neutral-800 dark:text-neutral-200">통합 관리 시스템</span>
